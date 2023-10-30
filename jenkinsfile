@@ -7,13 +7,9 @@ node("sf2-2"){
     } 
     stage('*** Compilation Phase ***') { 
         sh '''#!/bin/bash
-            git submodule update --init --recursive
-            cd gcc
-            ./contrib/download_prerequisites
-            cd ..
             mkdir build
-            ./configure --prefix=$PWD/build --with-arch=rv64gc --disable-multilib
-            make -j $(nproc)
+            ./configure --prefix=$PWD/build --with-arch=rv64gc --with-abi=lp64d
+            make linux -j $(nproc)
          '''
     }
     stage (' *** Running Binaries ***'){
