@@ -8,7 +8,7 @@ node("sf2-2"){
     stage('*** Compilation Phase ***') { 
         sh '''#!/bin/bash
             mkdir build
-            ./configure --prefix=$PWD/build --with-arch=rv64gc --with-gmp=/home/jenkins_user/GNU_deps/gmp6.3.0_installed --with-mpfr=/home/jenkins_user/GNU_deps/mpfr4.2.1_installed --with-mpc=/home/jenkins_user/GNU_deps/mpfr4.2.1_installed
+            ./configure --prefix=$PWD/build --with-arch=rv64gc --with-gmp=/home/jenkins_user/GNU_deps/gmp6.3.0_installed --with-mpfr=/home/jenkins_user/GNU_deps/mpfr4.2.1_installed --with-mpc=/home/jenkins_user/GNU_deps/mpc1.3.1_installed
             make linux -j $(nproc)
          '''
     }
