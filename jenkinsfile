@@ -8,6 +8,11 @@ node("sf2-2"){
     stage('*** Compilation Phase ***') { 
         sh '''#!/bin/bash
             mkdir build
+            echo "gmp,mpfr,mpc 1111"
+            ls /home/jenkins_user/GNU_deps/gmp6.3.0_installed
+            ls /home/jenkins_user/GNU_deps/mpfr4.2.1_installed
+            ls /home/jenkins_user/GNU_deps/mpc1.3.1_installed
+            echo "gmp,mpfr,mpc 2222"
             ./configure --prefix=$PWD/build --disable-multilib --with-gmp=/home/jenkins_user/GNU_deps/gmp6.3.0_installed/include --with-mpfr=/home/jenkins_user/GNU_deps/mpfr4.2.1_installed/include --with-mpc=/home/jenkins_user/GNU_deps/mpc1.3.1_installed/include
             make linux -j $(nproc)
          '''
