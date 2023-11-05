@@ -1,4 +1,4 @@
-node("sf2-2"){
+node("x86_runner1"){
     stage('*** Cleanup***') {
         cleanWs()
     }
@@ -8,20 +8,7 @@ node("sf2-2"){
     stage('*** Compilation Phase ***') { 
         sh '''#!/bin/bash
             mkdir build
-            echo "gmp,mpfr,mpc 1111"
-            ls /home/jenkins_user/GNU_deps/gmp6.3.0_installed
-            ls /home/jenkins_user/GNU_deps/mpfr4.2.1_installed
-            ls /home/jenkins_user/GNU_deps/mpc1.3.1_installed
-            echo "gmp,mpfr,mpc 2222"
-            ./configure \
-                --disable-multilib \
-                --prefix=$PWD/build \
-                --with-gmp-include=/home/jenkins_user/GNU_deps/gmp6.3.0_installed/include \
-                --with-gmp-lib=/home/jenkins_user/GNU_deps/gmp6.3.0_installed/lib \
-                --with-mpfr-include=/home/jenkins_user/GNU_deps/mpfr4.2.1_installed/include \
-                --with-mpfr-lib=/home/jenkins_user/GNU_deps/mpfr4.2.1_installed/lib \
-                --with-mpc-include=/home/jenkins_user/GNU_deps/mpc1.3.1_installed/include \
-                --with-mpc-lib=/home/jenkins_user/GNU_deps/mpc1.3.1_installed/lib
+            ./configure --prefix=$PWD/build --with-arch=rv64gc
             make linux -j $(nproc)
          '''
     }
